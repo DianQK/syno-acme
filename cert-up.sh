@@ -7,7 +7,6 @@ DATE_TIME=`date +%Y%m%d%H%M%S`
 # base crt path
 CRT_BASE_PATH="/usr/syno/etc/certificate"
 PKG_CRT_BASE_PATH="/usr/local/etc/certificate"
-#CRT_BASE_PATH="/Users/carl/Downloads/certificate"
 ACME_BIN_PATH=${BASE_ROOT}/acme.sh
 TEMP_PATH=${BASE_ROOT}/temp
 CRT_PATH_NAME=`cat ${CRT_BASE_PATH}/_archive/DEFAULT`
@@ -49,7 +48,7 @@ generateCrt () {
   echo 'begin updating default cert by acme.sh tool'
   source ${ACME_BIN_PATH}/acme.sh.env
   ${ACME_BIN_PATH}/acme.sh --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}"
-  ${ACME_BIN_PATH}/acme.sh --force --installcert -d ${DOMAIN} -d *.${DOMAIN} \
+  ${ACME_BIN_PATH}/acme.sh --installcert -d ${DOMAIN} -d *.${DOMAIN} \
     --certpath ${CRT_PATH}/cert.pem \
     --key-file ${CRT_PATH}/privkey.pem \
     --fullchain-file ${CRT_PATH}/fullchain.pem
@@ -68,19 +67,19 @@ generateCrt () {
 updateService () {
   echo 'begin updateService'
   echo 'cp cert path to des'
-  /bin/python2 ${BASE_ROOT}/crt_cp.py ${CRT_PATH_NAME}
+  /bin/python3 ${BASE_ROOT}/crt_cp.py ${CRT_PATH_NAME}
   echo 'done updateService'
 }
 
 reloadWebService () {
   echo 'begin reloadWebService'
   echo 'reloading new cert...'
-  /usr/syno/etc/rc.sysv/nginx.sh reload
-  echo 'relading Apache 2.2'
-  stop pkg-apache22
-  start pkg-apache22
-  reload pkg-apache22
-  echo 'done reloadWebService'  
+  /usr/syno/bin/synosystemctl reload nginx
+  # echo 'relading Apache 2.2'
+  # stop pkg-apache22
+  # start pkg-apache22
+  # reload pkg-apache22
+  echo 'done reloadWebService'
 }
 
 revertCrt () {

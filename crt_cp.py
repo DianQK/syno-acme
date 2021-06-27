@@ -26,12 +26,12 @@ try:
     info = json.load(open(INFO_FILE_PATH))
     services = info[SRC_DIR_NAME]['services']
 except:
-    print '[ERR] load INFO file- %s fail' %(INFO_FILE_PATH,) 
+    print('[ERR] load INFO file- %s fail' %(INFO_FILE_PATH,))
     sys.exit(1)
 
 CP_FROM_DIR = ARCHIEV_PATH + '/' + SRC_DIR_NAME
 for service in services:
-    print 'Copy cert for %s' %(service['display_name'])
+    print('Copy cert for %s' %(service['display_name']))
     if service['isPkg']:
         CP_TO_DIR = '%s/%s/%s' %(PKG_CERT_BASE_PATH, service['subscriber'], service['service'])
     else:
@@ -42,4 +42,4 @@ for service in services:
         try:
             shutil.copy2(src, des)
         except:
-            print '[WRN] copy from %s to %s fail' %(src, des)
+            print('[WRN] copy from %s to %s fail' %(src, des))
