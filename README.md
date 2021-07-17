@@ -17,6 +17,10 @@ master 分支：
 执行脚本
 
 ```shell
+# 设置 ZeroSSL 账户，参见 https://github.com/acmesh-official/acme.sh/wiki/ZeroSSL.com-CA
+export ACME_EAB_KID="xxxx"
+export ACME_EAB_HMAC_KEY="xxxx-xxxx"
+
 # 你主域名，如 baidu.com sina.com.cn 等，申请脚本会带上泛域名
 export DOMAIN=your_domain
 
@@ -53,6 +57,8 @@ path/cert-up.sh
 使用阿里云 DNS 举例：
 
 ```shell
+export ACME_EAB_KID="xxxx"
+export ACME_EAB_HMAC_KEY="xxxx-xxxx"
 export DOMAIN=your.domain
 export DNS=dns_ali
 export DNS_SLEEP=120
