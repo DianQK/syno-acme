@@ -35,7 +35,6 @@ installAcme () {
 generateCrt () {
   echo 'begin generateCrt'
   cd ${BASE_ROOT}
-  source config
   echo 'begin updating default cert by acme.sh tool'
   ${ACME_BIN_PATH}/acme.sh --home ${ACME_BIN_PATH} --register-account --server zerossl --eab-kid "${ACME_EAB_KID}" --eab-hmac-key "${ACME_EAB_HMAC_KEY}" 
   ${ACME_BIN_PATH}/acme.sh --home ${ACME_BIN_PATH} --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}" --server zerossl
