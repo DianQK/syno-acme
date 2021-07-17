@@ -2,9 +2,16 @@
 
 项目 fork 自 https://github.com/andyzhshg/syno-acme，变动内容如下：
 
+master 分支：
+
 - 适配 DSM 7.0（或者说仅支持 7.0
 - 移除了 apache
-- main 分支使用 ZeroSSL，master/letsencrypt 分支保持使用 letsencrypt
+- master/letsencrypt 分支保持使用 letsencrypt
+
+默认的 main 分支：
+
+- 切换到 ZeroSSL 服务商
+- 任务中移除了备份功能（主要是简化逻辑，降低维护成本），可以自行备份相关目录
 
 原文档如下：
 
