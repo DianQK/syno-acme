@@ -2,6 +2,8 @@
 
 set -e
 
+export NO_DETECT_SH=1
+
 # path of this script
 BASE_ROOT=$(cd "$(dirname "$0")";pwd)
 # base crt path
@@ -24,7 +26,7 @@ installAcme () {
   tar zxvf ${SRC_TAR_NAME}
   echo 'begin installing acme.sh tool...'
   cd ${SRC_NAME}
-  ./acme.sh --install --nocron --home ${ACME_BIN_PATH}
+  ./acme.sh --install --nocron --no-profile --home ${ACME_BIN_PATH}
   echo 'done installAcme'
   rm -rf ${TEMP_PATH}
   return 0
@@ -35,7 +37,6 @@ generateCrt () {
   cd ${BASE_ROOT}
   source config
   echo 'begin updating default cert by acme.sh tool'
-  source ${ACME_BIN_PATH}/acme.sh.env
   ${ACME_BIN_PATH}/acme.sh --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}" --server zerossl
   ${ACME_BIN_PATH}/acme.sh --installcert -d ${DOMAIN} -d *.${DOMAIN} \
     --certpath ${CRT_PATH}/cert.pem \
