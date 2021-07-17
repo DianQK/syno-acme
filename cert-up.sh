@@ -37,8 +37,9 @@ generateCrt () {
   cd ${BASE_ROOT}
   source config
   echo 'begin updating default cert by acme.sh tool'
-  ${ACME_BIN_PATH}/acme.sh --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}" --server zerossl
-  ${ACME_BIN_PATH}/acme.sh --installcert -d ${DOMAIN} -d *.${DOMAIN} \
+  ${ACME_BIN_PATH}/acme.sh --home ${ACME_BIN_PATH} --register-account --server zerossl --eab-kid "${ACME_EAB_KID}" --eab-hmac-key "${ACME_EAB_HMAC_KEY}" 
+  ${ACME_BIN_PATH}/acme.sh --home ${ACME_BIN_PATH} --force --log --issue --dns ${DNS} --dnssleep ${DNS_SLEEP} -d "${DOMAIN}" -d "*.${DOMAIN}" --server zerossl
+  ${ACME_BIN_PATH}/acme.sh --home ${ACME_BIN_PATH} --installcert -d ${DOMAIN} -d *.${DOMAIN} \
     --certpath ${CRT_PATH}/cert.pem \
     --key-file ${CRT_PATH}/privkey.pem \
     --fullchain-file ${CRT_PATH}/fullchain.pem
