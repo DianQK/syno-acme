@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # path of this script
 BASE_ROOT=$(cd "$(dirname "$0")";pwd)
 # date time
