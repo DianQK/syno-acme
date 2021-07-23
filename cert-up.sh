@@ -62,7 +62,7 @@ updateService () {
 reloadWebService () {
   echo 'begin reloadWebService'
   echo 'reloading new cert...'
-  /usr/syno/bin/synosystemctl reload nginx
+  /usr/syno/bin/synow3tool --gen-all && /bin/systemctl reload nginx
   echo 'done reloadWebService'
 }
 

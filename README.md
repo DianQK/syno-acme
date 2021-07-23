@@ -14,6 +14,8 @@ master 分支：
 - 移除了 config 文件，直接使用 export 配置
 - 任务中移除了备份功能（主要是简化逻辑，降低维护成本），可以自行备份相关目录
 
+> 7.0 命令行更新 nginx 见：https://v2ex.com/t/790035#r_10729240，感谢 [mao13820](https://v2ex.com/member/mao13820) 的帮助。
+
 执行脚本
 
 ```shell
