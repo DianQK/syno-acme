@@ -76,11 +76,7 @@ updateService () {
 reloadWebService () {
   echo 'begin reloadWebService'
   echo 'reloading new cert...'
-  /usr/syno/bin/synosystemctl reload nginx
-  # echo 'relading Apache 2.2'
-  # stop pkg-apache22
-  # start pkg-apache22
-  # reload pkg-apache22
+  /usr/syno/bin/synow3tool --gen-all && /bin/systemctl reload nginx
   echo 'done reloadWebService'
 }
 
