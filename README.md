@@ -1,5 +1,14 @@
 # syno-acme
 
+Update: 
+更合理的部署方式参见：
+- https://www.bilibili.com/read/cv13914241
+- https://github.com/acmesh-official/acme.sh/wiki/Synology-NAS-Guide
+
+
+
+---
+
 项目 fork 自 https://github.com/andyzhshg/syno-acme，变动内容如下：
 
 master 分支：
